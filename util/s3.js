@@ -10,7 +10,7 @@ exports.uploadFiles = (files) => {
     let count = 0;
     for (let i = 0; i < files.length; i++) {
       await uploadFile(files[i]).then((data) => {
-        // console.log("File", i, "uploaded ", data);
+        console.log("File", i, "uploaded ", data);
         filecloudlinks[i] = data.Location, 
         filelinks[i] = data.Key, 
         filename[i] = files[i].originalFilename ;

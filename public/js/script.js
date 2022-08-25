@@ -31,7 +31,7 @@ async function addFile() {
   return a;
 }
 
-async function submitAssignment(student_id, assignment_id, subject_id, aid, n) {
+async function submitAssignment(student_id, assignment_id, subject_id, aid, n,question_no,question) {
   let count = 1;
   console.log("In submitAssignment");
   let formData = new FormData();
@@ -59,16 +59,15 @@ async function submitAssignment(student_id, assignment_id, subject_id, aid, n) {
     formData.append("assignment_id", assignment_id);
     formData.append("student_id", student_id);
     formData.append("subject_id", subject_id);
-    formData.append("submission_id", "63072dc11a9364864f0a6343");
+    formData.append("submission_id", "63076a7b810d1312a3ddc61c");
 
     formData.append("attempt",count+1);
-    formData.append("question_no",1);
-    formData.append("question",
-     "WAP to check if the number is prime");
+    formData.append("question_no",question_no);
+    formData.append("question",question);
     formData.append("points",2);
 
     console.log(formData);
-    let a = await fetch("/submit", {
+    let a = await fetch("/resubmit", {
       method: "POST",
       body: formData,
     }).then((response, data) => {
@@ -271,7 +270,9 @@ function viewPendingAssignment(
       data.data[ass_num - 1]["assignment_id"],
       subject_id,
       ass_num - 1,
-      data.data[ass_num - 1].questions.length
+      data.data[ass_num - 1].questions.length,
+      data.data[ass_num - 1].questions[0].question_no,
+      data.data[ass_num - 1].questions[0].question
     );
   };
   btn.innerHTML = "Submit Assignment";
