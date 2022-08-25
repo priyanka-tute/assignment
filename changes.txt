@@ -1,0 +1,14 @@
+Models:
+    Assignment.js
+        subject_id = objectid
+        addedBy = objectId  
+
+    Submission.js
+        student_id = objectid
+        assignment_id = objectid
+        subject_id = object_id
+        addedBy = objectId    
+
+Controllers:
+    Student:
+        Naming of files

@@ -1,0 +1,44 @@
+5 to start c++,
+onsubmit - change color
+others - not submitted
+
+Admin - search by assignment_id, student_id,
+
+DB - email, student_id,
+
+- Frontend: Bootstrap
+  Niche Improvements:
+
+- Pending for evaluation(orange) - admin - evaluated(green) / error(red) w/ feedback
+- Points for every assignment
+
+
+- Random questions
+
+1 - 100
+assignments:{
+  subid:1,
+  assignment:1
+  ques_lis:[1,5,90,45,67]
+}
+
+Section -- Course
+  assignment - 1
+      Modules - 
+
+
+Java Basics -
+    assignment
+        Module1: OOP
+          - 20 
+        Module2: Control
+          -20
+        3: Inheritance
+          - 20
+        4: Pol
+          - 20
+        5: Foo
+          - 20 
+
+
+- Store questions directly 

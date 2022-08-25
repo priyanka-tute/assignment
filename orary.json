@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "data": [
+    {
+      "assignment_id": "62e21ad8ef8ce43ddbdd3546", //assignment id
+      "subject_id": "1",
+      "questions": [
+        {
+          "question_no": "1",
+          "question": "WAP to check if the number is prime",
+          "status": "submitted",
+          "submissions": [
+            {
+              "type":"file",
+              "attempt": "1",
+              "link": ["cloudfilename.ext", "cloudfilename.ext"],
+              "filename": ["uploadedFileName", "uploadedFileName"]
+            },
+            {
+              "type":"text",
+              "attempt": "2",
+              "text":"abc"
+            },
+            {
+              "type":"link",
+              "attempt": "3",
+              "link":["url"]
+            }
+          ]
+        },
+        {
+          "question_no": "2",
+          "question": "WAP",
+          "points": "1", //optional
+          "instructions": "ABC",
+          "status": "completed",
+          "submissions": [
+            {
+              "type":"file",
+              "attempt": "1",
+              "link": ["cloudfilename.ext"],
+              "filename": ["uploadedFileName"],
+              "review":"review for attempt1"
+            },
+            {
+              "type":"text",
+              "attempt": "2",
+              "text":"abc",
+              "review":"review for attempt2"
+            },
+            {
+              "type":"link",
+              "attempt": "3",
+              "link":["url"],
+              "review":"review for attempt3"
+            }
+          ]
+        },
+        {
+          "question_no": "3",
+          "question": "WAP",
+          "points": "3",  //optional
+          "instructions": "ABC", //optional
+          "status": "pending"
+        }
+      ]
+    }
+  ]
+}
+
+//------------------------------------------------------------------
+{
+"success": true,
+"data": [
+  {
+    "_id": "62e21ad8ef8ce43ddbdd3546",
+    "subject_id": "1",
+    "questions": [
+      {
+        "question_no": "1",
+        "question": "WAP to check if the number is prime",
+        "points": "2",
+      },
+  ]
+}
+]
+}
