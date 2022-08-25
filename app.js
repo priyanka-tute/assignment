@@ -27,11 +27,11 @@ const {
   submitAssignment,
   getAssignmentsByStudent,
 } = require("./controllers/student");
-const {
-  adminViewAllAssignmentsBySubject,
-  adminViewAssignmentsBySubject,
-  adminViewAssignmentByStudents,
-} = require("./controllers/admin");
+// const {
+//   adminViewAllAssignmentsBySubject,
+//   adminViewAssignmentsBySubject,
+//   adminViewAssignmentByStudents,
+// } = require("./controllers/admin");
 
 var app = express();
 app.use(cors());
