@@ -32,12 +32,16 @@ exports.submitAssignment = (req, res) => {
         sub.attempt = fields.attempt;
         if(fields.link)
         sub.link=fields.link;
+        if(fields.linkText)
+        sub.linkText=fields.linkText;
+        if(fields.text)
+        sub.text=fields.text;
         if(data.filename)
         sub.filename=data.filename
         if(data.filelinks)
         sub.filelink=data.filelinks;
         if(data.filecloudlinks)
-        sub.filelink=data.filecloudlinks;
+        sub.filecloudlinks=data.filecloudlinks;
         console.log(sub);
         addSubmission(fields.assignment_id,fields.subject_id,fields.student_id,{question:fields.question,question_no:fields.question_no,points:fields.points},sub)
           .then((data) => {
