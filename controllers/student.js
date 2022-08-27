@@ -95,6 +95,7 @@ exports.viewAssignments = async (req, res) => {
           else
           assignments[i].questions[j].status="submitted";
           assignments[i].questions[j].submissions = submission[0].submissions;
+          assignments[i].questions[j].submission_id = submission[0]._id;
           console.log("assignment after submission update",assignments[i]);
         }
         else
@@ -146,10 +147,16 @@ exports.resubmit = (req,res) => {
         sub.attempt = fields.attempt;
         if(fields.link)
         sub.link=fields.link;
+        if(fields.linkText)
+        sub.linkText=fields.linkText;
+        if(fields.text)
+        sub.text=fields.text;
         if(data.filename)
         sub.filename=data.filename
         if(data.filelinks)
         sub.filelink=data.filelinks;
+        if(data.filecloudlinks)
+        sub.filecloudlinks=data.filecloudlinks;
         console.log(sub);
         addAttempt(fields.submission_id,sub)
           .then((data) => {
