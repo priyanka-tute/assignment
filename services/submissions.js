@@ -80,3 +80,23 @@ exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index
         // Submission.updateOne({_id:submission_id}, {$pull:{submissions:{}}})
     })
 }
+
+exports.removeLinkSubmission = (submission_id, list_id, link, linkText,index) => {
+    return new Promise((resolve,reject)=>{
+        Submission.findOne({_id:submission_id, "submissions._id":list_id},
+        {submissions:{$elemMatch:{_id:list_id}},"submissions.$.link":{$in:link}}).then((sub)=>{
+            console.log(sub);
+            sub.submissions[0].link.splice(index,1);
+            sub.submissions[0].linkText.splice(index,1);
+            console.log(sub);
+            Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.link":sub.submissions[0].link, "submissions.$.linkText":sub.submissions[0].linkText}}).then((data)=>{
+                resolve(data);
+            }).catch((err)=>{
+                reject(err);
+            })
+        }).catch((err)=>{
+            reject(err);
+        })
+        // Submission.updateOne({_id:submission_id}, {$pull:{submissions:{}}})
+    })
+}
