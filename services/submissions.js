@@ -72,9 +72,11 @@ exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index
             Submission.updateOne({_id:submission_id, "submissions.$._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.$.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.$.filename":sub.submissions[0].filename}}).then((data)=>{
                 resolve(data);
             }).catch((err)=>{
+                console.log("update err",err);
                 reject(err);
             })
         }).catch((err)=>{
+            console.log("find err",err);
             reject(err);
         })
         // Submission.updateOne({_id:submission_id}, {$pull:{submissions:{}}})
