@@ -227,24 +227,24 @@ exports.resubmit = (req,res) => {
 // }
 
 exports.deleteFile = (req,res) => {
-  const filelinkname = req.query.filelink;
-  const filename = req.query.filename;
-  const index = req.query.index;
-  const submission_id = req.query.submission_id;
-  const list_id = req.query.list_id;
-
-  console.log(filelinkname);
-  console.log((filename));
-  console.log(index);
-  console.log(submission_id);
-  console.log(list_id);
-  removeFileSubmission(submission_id,list_id,filelinkname, filename, index).then((data)=>{
-    res.send({success:true,data:data});
-  }).catch((err)=>{
-    res.send({success:false,error:err});
-  })
-
-
+  let form = new formidable.IncomingForm();
+  form.parse(req, async function (error, fields, file) {
+    const filelinkname = fields.filelink;
+    const filename = fields.filename;
+    const index = fields.index;
+    const submission_id = fields.submission_id;
+    const list_id = fields.list_id;
+    console.log(filelinkname);
+    console.log((filename));
+    console.log(index);
+    console.log(submission_id);
+    console.log(list_id);
+    removeFileSubmission(submission_id,list_id,filelinkname, filename, index).then((data)=>{
+      res.send({success:true,data:data});
+    }).catch((err)=>{
+      res.send({success:false,error:err});
+    })
+  });
 }
 
 
