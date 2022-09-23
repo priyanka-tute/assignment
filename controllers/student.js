@@ -7,7 +7,7 @@ const {
 } = require("../services/student");
 const { fetchAssignmentsBySubject } = require("../services/Assignment");
 let formidable = require("formidable");
-const { addSubmission, addAttempt, getSubmissionsByStudentSubject, getSubmissionsByAssignmentStudent, getSubmissionsByAssignmentStudentQuestion } = require("../services/submissions");
+const { addSubmission, addAttempt, getSubmissionsByStudentSubject, getSubmissionsByAssignmentStudent, getSubmissionsByAssignmentStudentQuestion, removeFileSubmission } = require("../services/submissions");
 const { QuestionSchema } = require("../models/Assignment");
 
 exports.submitAssignment = (req, res) => {
@@ -174,3 +174,77 @@ exports.resubmit = (req,res) => {
       });
   });
 }
+
+
+// exports.resubmit = (req,res) => {
+//   let form = new formidable.IncomingForm();
+//   form.parse(req, async function (error, fields, file) {
+//     // console.log("file = ", Object.keys(file.fileupload));
+//     console.log("fields = ", fields);
+//     console.log("file = ", file);
+//     // console.log(fields.question);
+//     // console.log("error = ", error);
+//     let files = [];
+//     for (let i = 0; i < fields.n; i++) {
+//       files.push(file[fields.aid + "_" + i]);
+//     }
+//     uploadFiles(files)
+//       .then((data) => {
+//         console.log("response of uploadFiles...\n", data);
+//         sub = {
+
+//         };
+//         if(fields.attempt)
+//         sub.attempt = fields.attempt;
+//         if(fields.link)
+//         sub.link=fields.link;
+//         if(fields.linkText)
+//         sub.linkText=fields.linkText;
+//         if(fields.text)
+//         sub.text=fields.text;
+//         if(data.filename)
+//         sub.filename=data.filename
+//         if(data.filelinks)
+//         sub.filelink=data.filelinks;
+//         if(data.filecloudlinks)
+//         sub.filecloudlinks=data.filecloudlinks;
+//         console.log(sub);
+//         addAttempt(fields.submission_id,sub)
+//           .then((data) => {
+//             console.log(data);
+//             res.send({ success: true, data: data });
+//           })
+//           .catch((err) => {
+//             console.log(err);
+//             res.send({ success: false, error: err });
+//           });
+//       })
+//       .catch((err) => {
+//         // console.log("error in submit: ", err);
+//         res.send({ success: false, error: err });
+//       });
+//   });
+// }
+
+exports.deleteFile = (req,res) => {
+  const filelinkname = req.query.filelink;
+  const filename = req.query.filename;
+  const index = req.query.index;
+  const submission_id = req.query.submission_id;
+  const list_id = req.query.list_id;
+
+  console.log(filelinkname);
+  console.log((filename));
+  console.log(index);
+  console.log(submission_id);
+  console.log(list_id);
+  removeFileSubmission(submission_id,list_id,filelinkname, filename, index).then((data)=>{
+    res.send({success:true,data:data});
+  }).catch((err)=>{
+    res.send({success:false,error:err});
+  })
+
+
+}
+
+

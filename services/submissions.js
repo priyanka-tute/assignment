@@ -59,3 +59,24 @@ exports.getSubmissionsByAssignmentStudentQuestion = (student_id,subject_id,assig
     })
 })
 }
+
+exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index) => {
+    return new Promise((resolve,reject)=>{
+        Submission.findOne({_id:submission_id, "submissions._id":list_id},
+        {submissions:{$elemMatch:{_id:list_id}},"submissions.$.filelink":{$in:filelink}}).then((sub)=>{
+            console.log(sub);
+            sub.submissions[0].filelink.splice(index,1);
+            sub.submissions[0].filename.splice(index,1);
+            sub.submissions[0].filecloudlinks.splice(index,1);
+            console.log(sub);
+            Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.$.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.$.filename":sub.submissions[0].filename}}).then((data)=>{
+                resolve(data);
+            }).catch((err)=>{
+                reject(err);
+            })
+        }).catch((err)=>{
+            reject(err);
+        })
+        // Submission.updateOne({_id:submission_id}, {$pull:{submissions:{}}})
+    })
+}

@@ -1,4 +1,4 @@
-const { resubmit } = require("../controllers/student");
+const { resubmit, deleteFile } = require("../controllers/student");
 
 const router = require("express").Router();
 
@@ -11,6 +11,8 @@ const router = require("express").Router();
 // router.delete("/submission");
 
 router.post("/resubmit",resubmit);
+
+router.delete("/submission/file",deleteFile);
 
 // router.put("/attempt");
 
