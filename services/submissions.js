@@ -70,7 +70,7 @@ exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index
         // Submission.findOne({_id:submission_id, "submissions._id":list_id},
         // {submissions:{$elemMatch:{_id:list_id}},"submissions.filelink":{"$in":filelink}})
         .then((sub)=>{
-            console.log("before committing....",sub);
+            console.log("before committing....",sub,"\n",sub.submissions);
             sub.submissions[0].filelink.splice(index,1);
             sub.submissions[0].filename.splice(index,1);
             sub.submissions[0].filecloudlinks.splice(index,1);
