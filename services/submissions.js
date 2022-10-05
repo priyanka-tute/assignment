@@ -109,7 +109,14 @@ exports.resetTextSubmission = (submission_id, list_id, text) => {
     return new Promise((resolve,reject)=>{
         Submission.findOne({_id:submission_id, "submissions._id":list_id}).then((sub)=>{
             console.log(sub);
-            sub.submissions[0].text = text;
+            if(text==undefined || text.trim()!="")
+            {
+                delete sub.submissions[0].text;
+            }
+            else
+            {
+                sub.submissions[0].text = text;
+            }
             console.log(sub);
             sub.save();
         }).catch((err)=>{
