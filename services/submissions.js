@@ -73,12 +73,13 @@ exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index
             sub.submissions[0].filename.splice(index,1);
             sub.submissions[0].filecloudlinks.splice(index,1);
             console.log(sub);
-            Submission.updateOne(sub).then((data)=>{
-                resolve(data);
-            }).catch((err)=>{
-                console.log("update err",err);
-                reject(err);
-            })
+            sub.save();
+            // Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.filename":sub.submissions[0].filename}}).then((data)=>{
+            //     resolve(data);
+            // }).catch((err)=>{
+            //     console.log("update err",err);
+            //     reject(err);
+            // })
         }).catch((err)=>{
             console.log("find err",err);
             reject(err);
