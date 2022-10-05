@@ -256,8 +256,8 @@ exports.deleteLink = (req,res) => {
     const index = fields.index;
     const submission_id = fields.submission_id;
     const list_id = fields.list_id;
-    console.log(filelinkname);
-    console.log((filename));
+    console.log(linkText);
+    console.log((link));
     console.log(index);
     console.log(submission_id);
     console.log(list_id);
