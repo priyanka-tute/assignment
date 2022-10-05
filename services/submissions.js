@@ -65,8 +65,6 @@ exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index
         Submission.aggregate([{
             $match:{_id:submission_id},
             $match:{"submissions._id":list_id},   
-            $match:{"submissions.filelink":{$in:[filelink]}} ,
-            $project:{"submissions":1}       
         }])
         // Submission.findOne({_id:submission_id, "submissions._id":list_id},
         // {submissions:{$elemMatch:{_id:list_id}},"submissions.filelink":{"$in":filelink}})
