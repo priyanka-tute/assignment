@@ -62,8 +62,14 @@ exports.getSubmissionsByAssignmentStudentQuestion = (student_id,subject_id,assig
 
 exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index) => {
     return new Promise((resolve,reject)=>{
-        Submission.findOne({_id:submission_id, "submissions._id":list_id},
-        {submissions:{$elemMatch:{_id:list_id}},"submissions.filelink":{"$in":[filelink,"$submissions.filelink"]}}).then((sub)=>{
+        Submission.aggregate([{
+            $match:{_id:submission_id},
+            $match:{"submissions._id":list_id},   
+            $match:{"submissions.filelink":{$in:[filelink]}}         
+        }])
+        // Submission.findOne({_id:submission_id, "submissions._id":list_id},
+        // {submissions:{$elemMatch:{_id:list_id}},"submissions.filelink":{"$in":filelink}})
+        .then((sub)=>{
             console.log("before committing....",sub);
             sub.submissions[0].filelink.splice(index,1);
             sub.submissions[0].filename.splice(index,1);
