@@ -64,7 +64,7 @@ exports.removeFileSubmission = (submission_id, list_id, filelink, filename,index
     return new Promise((resolve,reject)=>{
         Submission.aggregate([{
             $match:{_id:submission_id},
-            $match:{"submissions._id":list_id},   
+            $filter:{"submissions._id":list_id},   
         }])
         // Submission.findOne({_id:submission_id, "submissions._id":list_id},
         // {submissions:{$elemMatch:{_id:list_id}},"submissions.filelink":{"$in":filelink}})
