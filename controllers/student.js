@@ -8,6 +8,7 @@ const {
 const { fetchAssignmentsBySubject } = require("../services/Assignment");
 let formidable = require("formidable");
 const { addSubmission, addAttempt, getSubmissionsByStudentSubject, getSubmissionsByAssignmentStudent, getSubmissionsByAssignmentStudentQuestion, removeFileSubmission } = require("../services/submissions");
+const { addSubmission, addAttempt, getSubmissionsByStudentSubject, getSubmissionsByAssignmentStudent, getSubmissionsByAssignmentStudentQuestion, removeFileSubmission, removeLinkSubmission } = require("../services/submissions");
 const { QuestionSchema } = require("../models/Assignment");
 
 exports.submitAssignment = (req, res) => {
@@ -227,22 +228,82 @@ exports.resubmit = (req,res) => {
 // }
 
 exports.deleteFile = (req,res) => {
-  const filelinkname = req.query.filelink;
-  const filename = req.query.filename;
-  const index = req.query.index;
-  const submission_id = req.query.submission_id;
-  const list_id = req.query.list_id;
+//   const filelinkname = req.query.filelink;
+//   const filename = req.query.filename;
+//   const index = req.query.index;
+//   const submission_id = req.query.submission_id;
+//   const list_id = req.query.list_id;
 
-  console.log(filelinkname);
-  console.log((filename));
-  console.log(index);
-  console.log(submission_id);
-  console.log(list_id);
-  removeFileSubmission(submission_id,list_id,filelinkname, filename, index).then((data)=>{
-    res.send({success:true,data:data});
-  }).catch((err)=>{
-    res.send({success:false,error:err});
-  })
+//   console.log(filelinkname);
+//   console.log((filename));
+//   console.log(index);
+//   console.log(submission_id);
+//   console.log(list_id);
+//   removeFileSubmission(submission_id,list_id,filelinkname, filename, index).then((data)=>{
+//     res.send({success:true,data:data});
+//   }).catch((err)=>{
+//     res.send({success:false,error:err});
+//   })
 
 
+// }
+  let form = new formidable.IncomingForm();
+  form.parse(req, async function (error, fields, file) {
+    const filelinkname = fields.file_link;
+    const filename = fields.file_name;
+    const index = fields.index;
+    const submission_id = fields.submission_id;
+    const list_id = fields.list_id;
+    console.log(filelinkname);
+    console.log((filename));
+    console.log(index);
+    console.log(submission_id);
+    console.log(list_id);
+    removeFileSubmission(submission_id,list_id,filelinkname, filename, index).then((data)=>{
+      res.send({success:true,data:data});
+    }).catch((err)=>{
+      res.send({success:false,error:err});
+    })
+  });
 }
+
+
+exports.deleteLink = (req,res) => {
+  let form = new formidable.IncomingForm();
+  form.parse(req, async function (error, fields, file) {
+    const link = fields.link;
+    const linkText = fields.link_text;
+    const index = fields.index;
+    const submission_id = fields.submission_id;
+    const list_id = fields.list_id;
+    console.log(linkText);
+    console.log((link));
+    console.log(index);
+    console.log(submission_id);
+    console.log(list_id);
+    removeLinkSubmission(submission_id,list_id,link, linkText, index).then((data)=>{
+      res.send({success:true,data:data});
+    }).catch((err)=>{
+      res.send({success:false,error:err});
+    })
+  });
+}
+
+exports.resetText = (req,res) => {
+  let form = new formidable.IncomingForm();
+  form.parse(req, async function (error, fields, file) {
+    const text = fields.text;
+    const submission_id = fields.submission_id;
+    const list_id = fields.list_id;
+    console.log(text);
+    console.log(submission_id);
+    console.log(list_id);
+    resetTextSubmission(submission_id,list_id,text).then((data)=>{
+      res.send({success:true,data:data});
+    }).catch((err)=>{
+      res.send({success:false,error:err});
+    })
+  });
+}
+
+
