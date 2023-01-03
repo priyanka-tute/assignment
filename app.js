@@ -61,6 +61,7 @@ app.get("/", (req, res) => {
 
 app.use(require("./routes/assignment"));
 app.use(require("./routes/submission"));
+app.use("/mentor",require("./routes/mentor"));
 
 app.post("/submit", submitAssignment);
 

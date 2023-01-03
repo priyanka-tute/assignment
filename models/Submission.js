@@ -18,7 +18,16 @@ const SubmissionSchema = new Schema({
       link: [],
       text: String,
       linkText:[],
-      review:String,
+      review:new Schema(
+        {
+          filelink: [],
+          filename: [],
+          filecloudlinks:[],
+          link: [],
+          text: String,
+          linkText:[],
+        }
+      ),
       reviewBy:Number,
       reviewDate:Date,
     },{timestamps:{

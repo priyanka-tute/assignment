@@ -1,0 +1,65 @@
+{
+    "success":"true",
+    "data":[{
+     "student_id": "1",
+     "assignment_id":"62e21ad8ef8ce43ddbdd3546",
+     "subject_id":"1",
+     "subject_name":"UI/UX",
+     "question": {
+        "question_no": "2",
+        "question": "WAP to check if the number is prime",
+        "points":2,
+        "instructions":"ABC"
+     },
+     "status" : "completed",
+     "submissions": [
+        {
+            "_id":"62e21ad8ef8ce43ddbdd3546",
+            "type":"file",
+            "attempt": "1",
+            "filelink": ["cloudfilename.ext", "cloudfilename.ext"],
+            "filename": ["uploadedFileName", "uploadedFileName"],
+            "link": ["tutedude.com"],
+            "text": "String",
+            "linkText":["tutedude clone"],
+            "review":"Well done",
+            "reviewBy":1,
+            "reviewDate":"14-09-2022"
+        }
+    ]
+    },{
+        "student_id": "1",
+     "assignment_id":"62e21ad8ef8ce43ddbdd3546",
+     "subject_id":"1",
+     "subject_name":"Python",
+     "question": {
+        "question_no": "1",
+        "question": "WAP to check if the number is prime",
+        "points":2,
+        "instructions":"ABC"
+     },
+     "status" : "submitted",
+     "submissions": [
+        {
+            "_id":"62e21ad8ef8ce43ddbdd3546",
+            "type":"file",
+            "attempt": "1",
+            "filelink": ["cloudfilename.ext", "cloudfilename.ext"],
+            "filename": ["uploadedFileName", "uploadedFileName"],
+            "link": ["tutedude.com"],
+            "text": "String",
+            "linkText":["tutedude clone"]
+        },
+        {
+            "_id":"62e21ad8ef8ce43ddbdd3546",
+            "type":"file",
+            "attempt": "2",
+            "filelink": ["cloudfilename.ext", "cloudfilename.ext"],
+            "filename": ["uploadedFileName", "uploadedFileName"],
+            "link": ["tutedude.com"],
+            "text": "String",
+            "linkText":["tutedude clone"]
+        }
+    ]
+    }]
+}
