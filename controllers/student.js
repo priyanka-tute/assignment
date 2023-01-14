@@ -7,7 +7,7 @@ const {
 } = require("../services/student");
 const { fetchAssignmentsBySubject } = require("../services/Assignment");
 let formidable = require("formidable");
-const { addSubmission, addAttempt, getSubmissionsByStudentSubject, getSubmissionsByAssignmentStudent, getSubmissionsByAssignmentStudentQuestion, removeFileSubmission } = require("../services/submissions");
+// const { addSubmission, addAttempt, getSubmissionsByStudentSubject, getSubmissionsByAssignmentStudent, getSubmissionsByAssignmentStudentQuestion, removeFileSubmission } = require("../services/submissions");
 const { addSubmission, addAttempt, getSubmissionsByStudentSubject, getSubmissionsByAssignmentStudent, getSubmissionsByAssignmentStudentQuestion, removeFileSubmission, removeLinkSubmission } = require("../services/submissions");
 const { QuestionSchema } = require("../models/Assignment");
 

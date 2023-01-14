@@ -1,5 +1,7 @@
 const { getSubmissionsBySubject, getSubmissionsByStudent, getAllSubmissions, getSubmissionsByStudentSubject, addFeedback } = require("../services/submissions");
 const { uploadFiles } = require("../util/s3");
+let formidable = require("formidable");
+
 
 exports.fetchSubmissionsBySubject = (req,res) => {
     const subject_id = req.query.subject_id;
@@ -68,8 +70,8 @@ exports.addMentorFeedback = (req,res) => {
         sub = {
 
         };
-        if(fields.attempt)
-        sub.attempt = fields.attempt;
+        // if(fields.attempt)
+        // sub.attempt = fields.attempt;
         if(fields.link)
         sub.link=fields.link;
         if(fields.linkText)

@@ -146,7 +146,8 @@ exports.addFeedback = (submission_id,list_id, review) => {
             sub.submissions[0].reviewDate = new Date();
             sub.status = "completed";
             console.log(sub);
-            Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.$.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.$.filename":sub.submissions[0].filename}}).then((data)=>{
+            Submission.updateOne({_id:submission_id},sub).then((data)=>{
+            // Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.$.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.$.filename":sub.submissions[0].filename}}).then((data)=>{
                 resolve(data);
             }).catch((err)=>{
                 reject(err);
