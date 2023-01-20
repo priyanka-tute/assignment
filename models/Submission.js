@@ -6,7 +6,7 @@ const ObjectId = Schema.ObjectId;
 const SubmissionSchema = new Schema({
  student_id: String,
  assignment_id:{type:ObjectId,ref:"assignment"},
- subject_id:Number,
+ subject_id:{type:ObjectId,ref:"course"},
  question: QuestionSchema,
  status : {type:String,default:"submitted"},
  submissions: [new Schema(
