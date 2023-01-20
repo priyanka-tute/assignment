@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
 const SubmissionSchema = new Schema({
- student_id: Number,
+ student_id: String,
  assignment_id:{type:ObjectId,ref:"assignment"},
  subject_id:Number,
  question: QuestionSchema,

@@ -20,6 +20,7 @@
     "formidable": "^2.0.1",
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.3",
+    "mysql2": "^3.0.1",
     "path": "^0.12.7"
   }
 }

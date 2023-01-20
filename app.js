@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 // var logger = require("morgan");
 require("dotenv").config();
 const cors = require("cors");
+require("./models/Course");
 // const {
 //   getAssignmentsByStudent,
 //   getAssignmentsBySubject,

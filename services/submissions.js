@@ -2,6 +2,7 @@
 
 const { resolve } = require("path");
 const Submission = require("../models/Submission");
+const { searchUserFromMysql } = require("./mysql");
 
 exports.addSubmission = (assignment_id,subject_id, student_id, question, submission) => {
     console.log("in as...");
@@ -32,7 +33,7 @@ exports.addAttempt = (submission_id, submission) => {
 
 exports.getSubmissionsByStudentSubject = (student_id,subject_id) => {
     return new Promise((resolve,reject)=>{
-    Submission.find({student_id,subject_id}).exec().then((data)=>{
+    Submission.find({student_id,subject_id}).populate("assignment_id").populate("assignment_id.subject_id").exec().then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);
@@ -42,7 +43,13 @@ exports.getSubmissionsByStudentSubject = (student_id,subject_id) => {
 
 exports.getSubmissionsBySubject = (subject_id) => {
     return new Promise((resolve,reject)=>{
-    Submission.find({subject_id}).exec().then((data)=>{
+    Submission.find({subject_id}).populate("assignment_id").populate({ 
+        path: 'assignment_id',
+        populate: {
+          path: 'subject_id',
+          model: 'course'
+        } 
+     }).exec().then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);
@@ -52,7 +59,7 @@ exports.getSubmissionsBySubject = (subject_id) => {
 
 exports.getSubmissionsByStudent = (student_id) => {
     return new Promise((resolve,reject)=>{
-    Submission.find({student_id}).exec().then((data)=>{
+    Submission.find({student_id}).populate("assignment_id").populate("assignment_id.subject_id").exec().then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);
@@ -62,7 +69,7 @@ exports.getSubmissionsByStudent = (student_id) => {
 
 exports.getAllSubmissions = () => {
     return new Promise((resolve,reject)=>{
-    Submission.find({}).exec().then((data)=>{
+    Submission.find({}).populate("assignment_id").populate("assignment_id.subject_id").exec().then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);
@@ -72,7 +79,7 @@ exports.getAllSubmissions = () => {
 
 exports.getSubmissionsByAssignmentStudent = (student_id,subject_id,assignment_id) => {
     return new Promise((resolve,reject)=>{
-    Submission.find({student_id,subject_id,assignment_id}).exec().then((data)=>{
+    Submission.find({student_id,subject_id,assignment_id}).populate("assignment_id").populate("assignment_id.subject_id").exec().then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);
@@ -82,7 +89,7 @@ exports.getSubmissionsByAssignmentStudent = (student_id,subject_id,assignment_id
 
 exports.getSubmissionsByAssignmentStudentQuestion = (student_id,subject_id,assignment_id,question_no,question) => {
     return new Promise((resolve,reject)=>{
-    Submission.find({student_id:student_id,subject_id:subject_id,assignemnt_is:assignment_id,"question.question":question,"question.question_no":question_no},{"submissions.filecloudlinks":0}).exec().then((data)=>{
+    Submission.find({student_id:student_id,subject_id:subject_id,assignemnt_is:assignment_id,"question.question":question,"question.question_no":question_no},{"submissions.filecloudlinks":0}).populate("assignment_id").populate("assignment_id.subject_id").exec().then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);
@@ -175,4 +182,22 @@ exports.resetTextSubmission = (submission_id, list_id, text) => {
         })
         // Submission.updateOne({_id:submission_id}, {$pull:{submissions:{}}})
     })
+}
+
+exports.getMysqlStudentForEachSubmission = (data) => {
+    return new Promise(async (resolve,reject)=>{
+        let newData = JSON.parse(JSON.stringify(data));
+        // let newData = data;
+        // console.log(newData);
+        for(let i=0;i<data.length;i++)
+        {
+            const student_id = newData[i].student_id;
+            const student = await searchUserFromMysql(student_id).catch((err)=>{
+                reject(err);
+            });
+            newData[i].student_name = student.name;
+            // console.log(newData[i]);
+        }
+        resolve(newData);
+    });
 }

@@ -1,4 +1,4 @@
-const { getSubmissionsBySubject, getSubmissionsByStudent, getAllSubmissions, getSubmissionsByStudentSubject, addFeedback } = require("../services/submissions");
+const { getSubmissionsBySubject, getSubmissionsByStudent, getAllSubmissions, getSubmissionsByStudentSubject, addFeedback, getMysqlStudentForEachSubmission } = require("../services/submissions");
 const { uploadFiles } = require("../util/s3");
 let formidable = require("formidable");
 const { addAssignment } = require("../services/Assignment");
@@ -9,7 +9,9 @@ exports.fetchSubmissionsBySubject = (req,res) => {
     console.log("subject_id = ",subject_id);
     getSubmissionsBySubject(subject_id).then((data)=>{
         console.log(data);
-        res.send({success:true,data:data});
+        getMysqlStudentForEachSubmission(data).then((newData)=>{
+          res.send({success:true,data:newData});
+        })
     }).catch((err)=>{
         console.log(err);
         res.send({success:false,error:err});
