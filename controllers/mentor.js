@@ -63,11 +63,11 @@ exports.addMentorFeedback = (req,res) => {
     // console.log("error = ", error);
     let links = [];
     for (let i = 0; i < fields.link_n; i++) {
-      links.push(fields[fields.link-aid + "_" + i]);
+      links.push(fields[fields.link_aid + "_" + i]);
     }
     let ltd = [];
     for (let i = 0; i < fields.ltd_n; i++) {
-      ltd.push(fields[fields.ltd-aid + "_" + i]);
+      ltd.push(fields[fields.ltd_aid + "_" + i]);
     }
     let files = [];
     for (let i = 0; i < fields.n; i++) {

@@ -18,6 +18,15 @@ exports.submitAssignment = (req, res) => {
     console.log("fields = ", fields);
     console.log("file = ", file);
     console.log(fields.question);
+
+    let links = [];
+    for (let i = 0; i < fields.link_n; i++) {
+      links.push(fields[fields.link_aid + "_" + i]);
+    }
+    let ltd = [];
+    for (let i = 0; i < fields.ltd_n; i++) {
+      ltd.push(fields[fields.ltd_aid + "_" + i]);
+    }
     // console.log("error = ", error);
     let files = [];
     for (let i = 0; i < fields.n; i++) {
@@ -31,10 +40,10 @@ exports.submitAssignment = (req, res) => {
         };
         if(fields.attempt)
         sub.attempt = fields.attempt;
-        if(fields.link)
-        sub.link=fields.link;
-        if(fields.linkText)
-        sub.linkText=fields.linkText;
+        // if(fields.link)
+        sub.link=fields.links;
+        // if(fields.linkText)
+        sub.linkText=fields.ltd;
         if(fields.text)
         sub.text=fields.text;
         if(data.filename)
@@ -134,6 +143,14 @@ exports.resubmit = (req,res) => {
     console.log("file = ", file);
     // console.log(fields.question);
     // console.log("error = ", error);
+    let links = [];
+    for (let i = 0; i < fields.link_n; i++) {
+      links.push(fields[fields.link_aid + "_" + i]);
+    }
+    let ltd = [];
+    for (let i = 0; i < fields.ltd_n; i++) {
+      ltd.push(fields[fields.ltd_aid + "_" + i]);
+    }
     let files = [];
     for (let i = 0; i < fields.n; i++) {
       files.push(file[fields.aid + "_" + i]);
@@ -146,10 +163,10 @@ exports.resubmit = (req,res) => {
         };
         if(fields.attempt)
         sub.attempt = fields.attempt;
-        if(fields.link)
-        sub.link=fields.link;
-        if(fields.linkText)
-        sub.linkText=fields.linkText;
+        // if(fields.link)
+        sub.link=fields.links;
+        // if(fields.linkText)
+        sub.linkText=fields.ltd;
         if(fields.text)
         sub.text=fields.text;
         if(data.filename)
