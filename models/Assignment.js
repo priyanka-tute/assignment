@@ -8,7 +8,7 @@ const QuestionSchema = new Schema({
   points:Number,
   question:String,
   instructions:String,
-  addedBy:Number,
+  addedBy:{type:ObjectId, ref:"instructor"},
 },{timestamps:{
   createdAt: 'addDate',
   updatedAt: 'updatedAt'
@@ -17,7 +17,8 @@ const QuestionSchema = new Schema({
 const AssignmentSchema = new Schema({
  subject_id:Number,
  questions:[QuestionSchema],
- addedBy:Number,
+ topic:{default:"Topic",type:String},
+ addedBy:{type:ObjectId, ref:"instructor"},
 },{
     timestamps: {
         createdAt: 'addDate',

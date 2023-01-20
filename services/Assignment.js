@@ -42,11 +42,13 @@ exports.updateAssignment = (subject_id,assignment_id,questions) => {
     })
 }
 
-exports.addAssignment = (subject_id,questions) => {
+exports.addAssignment = (subject_id,questions,addedBy,topic) => {
     return new Promise((resolve,reject)=>{
         var a = new Assignment({
             subject_id:subject_id,
             questions:questions,
+            addedBy:addedBy,
+            topic:topic
         });
         console.log(a);
         a.save(function(err,data){

@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 
 const SubmissionSchema = new Schema({
  student_id: Number,
- assignment_id:ObjectId,
+ assignment_id:{type:ObjectId,ref:"assignment"},
  subject_id:Number,
  question: QuestionSchema,
  status : {type:String,default:"submitted"},
@@ -28,7 +28,7 @@ const SubmissionSchema = new Schema({
           linkText:[],
         }
       ),
-      reviewBy:Number,
+      reviewBy:{type:ObjectId, ref:"instructor"},
       reviewDate:Date,
     },{timestamps:{
         createdAt: 'addDate',

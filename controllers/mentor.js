@@ -1,6 +1,7 @@
 const { getSubmissionsBySubject, getSubmissionsByStudent, getAllSubmissions, getSubmissionsByStudentSubject, addFeedback } = require("../services/submissions");
 const { uploadFiles } = require("../util/s3");
 let formidable = require("formidable");
+const { addAssignment } = require("../services/Assignment");
 
 
 exports.fetchSubmissionsBySubject = (req,res) => {
@@ -60,6 +61,14 @@ exports.addMentorFeedback = (req,res) => {
     console.log("fields = ", fields);
     console.log("file = ", file);
     // console.log("error = ", error);
+    let links = [];
+    for (let i = 0; i < fields.link_n; i++) {
+      links.push(fields[fields.link-aid + "_" + i]);
+    }
+    let ltd = [];
+    for (let i = 0; i < fields.ltd_n; i++) {
+      ltd.push(fields[fields.ltd-aid + "_" + i]);
+    }
     let files = [];
     for (let i = 0; i < fields.n; i++) {
       files.push(file[fields.aid + "_" + i]);
@@ -72,10 +81,10 @@ exports.addMentorFeedback = (req,res) => {
         };
         // if(fields.attempt)
         // sub.attempt = fields.attempt;
-        if(fields.link)
-        sub.link=fields.link;
-        if(fields.linkText)
-        sub.linkText=fields.linkText;
+        // if(fields.link)
+        sub.link=fields.links;
+        // if(fields.linkText)
+        sub.linkText=fields.ltd;
         if(fields.text)
         sub.text=fields.text;
         if(data.filename)
@@ -84,6 +93,9 @@ exports.addMentorFeedback = (req,res) => {
         sub.filelink=data.filelinks;
         if(data.filecloudlinks)
         sub.filecloudlinks=data.filecloudlinks;
+        // if(data.resubmit && data.resubmit=="true")
+        // sub.status = "pending";
+        // sub
         console.log(sub);
         addFeedback(fields.submission_id,fields.list_id,sub)
           .then((data) => {
@@ -100,4 +112,10 @@ exports.addMentorFeedback = (req,res) => {
         res.send({ success: false, error: err });
       });
   });
+}
+
+exports.addAssignment = (req,res) => {
+  console.log(req.body.assignment);
+  addAssignment(req.body.assignment.subject_id,req.body.assignment.questions,req.body.assignment.addedBy,req.body.assignment.topic);
+  res.send({success:true});
 }

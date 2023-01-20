@@ -134,7 +134,7 @@ exports.removeLinkSubmission = (submission_id, list_id, link, linkText,index) =>
     })
 }
 
-exports.addFeedback = (submission_id,list_id, review) => {
+exports.addFeedback = (submission_id,list_id, review,resubmit) => {
     return new Promise((resolve,reject)=>{
         Submission.findOne({_id:submission_id, "submissions._id":list_id},
         {submissions:{$elemMatch:{_id:list_id}}}).then((sub)=>{
