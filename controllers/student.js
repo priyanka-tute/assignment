@@ -41,9 +41,9 @@ exports.submitAssignment = (req, res) => {
         if(fields.attempt)
         sub.attempt = fields.attempt;
         // if(fields.link)
-        sub.link=fields.links;
+        sub.link=links;
         // if(fields.linkText)
-        sub.linkText=fields.ltd;
+        sub.linkText=ltd;
         if(fields.text)
         sub.text=fields.text;
         if(data.filename)
@@ -164,9 +164,9 @@ exports.resubmit = (req,res) => {
         if(fields.attempt)
         sub.attempt = fields.attempt;
         // if(fields.link)
-        sub.link=fields.links;
+        sub.link=links;
         // if(fields.linkText)
-        sub.linkText=fields.ltd;
+        sub.linkText=ltd;
         if(fields.text)
         sub.text=fields.text;
         if(data.filename)

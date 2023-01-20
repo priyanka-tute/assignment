@@ -60,7 +60,7 @@ exports.addMentorFeedback = (req,res) => {
     // console.log("file = ", Object.keys(file.fileupload));
     console.log("fields = ", fields);
     console.log("file = ", file);
-    // console.log("error = ", error);
+    // console.log("error = ", );
     let links = [];
     for (let i = 0; i < fields.link_n; i++) {
       links.push(fields[fields.link_aid + "_" + i]);
@@ -82,9 +82,9 @@ exports.addMentorFeedback = (req,res) => {
         // if(fields.attempt)
         // sub.attempt = fields.attempt;
         // if(fields.link)
-        sub.link=fields.links;
+        sub.link=links;
         // if(fields.linkText)
-        sub.linkText=fields.ltd;
+        sub.linkText=ltd;
         if(fields.text)
         sub.text=fields.text;
         if(data.filename)
