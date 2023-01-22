@@ -7,7 +7,7 @@ var app = require("./app");
 // });
 // app = app.route("/assignment");
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3002;
 // app.listen("/assignment");
 app.listen(port,"/assignment", () => {
   console.log("Server listening on port ", port);
