@@ -54,19 +54,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
-
+// app.route("/assignment")
 app.get("/", (req, res) => {
   //   res = setPublicCookie(req, res);
   res.render("index", { user: undefined });
-});
-
-app.use(require("./routes/assignment"));
-app.use(require("./routes/submission"));
-app.use("/mentor",require("./routes/mentor"));
-
-app.post("/submit", submitAssignment);
-
-app.get("/subjects", (req, res) => {
+})
+app.use("/assignment",require("./routes/assignment"));
+app.use("/assignment",require("./routes/submission"));
+app.use("/assignment/mentor",require("./routes/mentor"));
+app.post("/assignment/submit", submitAssignment);
+app.get("/assignment/subjects", (req, res) => {
   res.send({
     success: true,
     data: [
@@ -75,12 +72,10 @@ app.get("/subjects", (req, res) => {
     ],
   });
 });
-
-app.get("/admin", (req, res) => {
+app.get("/assignment/admin", (req, res) => {
   res.render("admin");
 });
-
-app.get("/assignment/view",viewAssignments);
+app.get("/assignment/assignment/view",viewAssignments);
 
 
 module.exports = app;

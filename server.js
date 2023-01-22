@@ -5,8 +5,10 @@ var app = require("./app");
 // var server = http.createServer(() => {
 //   console.log("Server is up...");
 // });
+// app = app.route("/assignment");
 
 const port = process.env.PORT || 3001;
-app.listen(port, () => {
+// app.listen("/assignment");
+app.listen(port,"/assignment", () => {
   console.log("Server listening on port ", port);
 });
