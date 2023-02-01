@@ -323,4 +323,21 @@ exports.resetText = (req,res) => {
   });
 }
 
+exports.deleteText = (req,res) => {
+  let form = new formidable.IncomingForm();
+  form.parse(req, async function (error, fields, file) {
+    // const text = fields.text;
+    const submission_id = fields.submission_id;
+    const list_id = fields.list_id;
+    // console.log(text);
+    console.log(submission_id);
+    console.log(list_id);
+    resetTextSubmission(submission_id,list_id,null).then((data)=>{
+      res.send({success:true,data:data});
+    }).catch((err)=>{
+      res.send({success:false,error:err});
+    })
+  });
+}
+
 
