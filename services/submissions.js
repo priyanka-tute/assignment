@@ -23,7 +23,7 @@ exports.addSubmission = (assignment_id,subject_id, student_id, question, submiss
 
 exports.addAttempt = (submission_id, submission) => {
     return new Promise((resolve,reject)=>{
-    Submission.findByIdAndUpdate(submission_id,{$push:{submissions:submission}}).then((data)=>{
+    Submission.findByIdAndUpdate(submission_id,{$push:{submissions:submission},"status":"completed"}).then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);
@@ -70,6 +70,16 @@ exports.getSubmissionsByStudent = (student_id) => {
 exports.getAllSubmissions = () => {
     return new Promise((resolve,reject)=>{
     Submission.find({}).populate("assignment_id").populate("assignment_id.subject_id").exec().then((data)=>{
+        resolve(data);
+    }).catch((err)=>{
+        reject(err);
+    })
+})
+}
+
+exports.getAllUnreviewedSubmissions = () => {
+    return new Promise((resolve,reject)=>{
+    Submission.find({"status":{"$in":["submitted","resubmit"]}}).populate("assignment_id").populate("assignment_id.subject_id").exec().then((data)=>{
         resolve(data);
     }).catch((err)=>{
         reject(err);

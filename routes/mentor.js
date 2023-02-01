@@ -1,4 +1,4 @@
-const { fetchAllSubmissions, fetchSubmissionsByStudent, fetchSubmissionsBySubject, fetchSubmissionsByStudentSubject, addMentorFeedback, addAssignment } = require("../controllers/mentor");
+const { fetchAllSubmissions, fetchSubmissionsByStudent, fetchSubmissionsBySubject, fetchSubmissionsByStudentSubject, addMentorFeedback, addAssignment, getPendingSubmissions } = require("../controllers/mentor");
 
 const router = require("express").Router();
 
@@ -13,5 +13,7 @@ router.get("/submission/student/subject",fetchSubmissionsByStudentSubject);
 router.post("/submission/feedback",addMentorFeedback);
 
 router.post("/assignment",addAssignment);
+
+router.get("/submission/pending",getPendingSubmissions);
 
 module.exports = router;

@@ -1,4 +1,4 @@
-const { getSubmissionsBySubject, getSubmissionsByStudent, getAllSubmissions, getSubmissionsByStudentSubject, addFeedback, getMysqlStudentForEachSubmission } = require("../services/submissions");
+const { getSubmissionsBySubject, getSubmissionsByStudent, getAllSubmissions, getSubmissionsByStudentSubject, addFeedback, getMysqlStudentForEachSubmission, getAllUnreviewedSubmissions } = require("../services/submissions");
 const { uploadFiles } = require("../util/s3");
 let formidable = require("formidable");
 const { addAssignment } = require("../services/Assignment");
@@ -123,4 +123,16 @@ exports.addAssignment = (req,res) => {
   console.log(req.body.assignment);
   addAssignment(req.body.assignment.subject_id,req.body.assignment.questions,req.body.assignment.addedBy,req.body.assignment.topic);
   res.send({success:true});
+}
+
+exports.getPendingSubmissions = (req,res) => {
+    getAllUnreviewedSubmissions().then((data)=>{
+        console.log(data);
+        getMysqlStudentForEachSubmission(data).then((newData)=>{
+          res.send({success:true,data:newData});
+        })
+    }).catch((err)=>{
+        console.log(err);
+        res.send({success:false,error:err});
+    })
 }
