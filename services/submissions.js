@@ -151,6 +151,9 @@ exports.addFeedback = (submission_id,list_id, review,resubmit) => {
             // sub.submissions[0].filecloudlinks.splice(index,1);
             sub.submissions[0].review = review;
             sub.submissions[0].reviewDate = new Date();
+            if(resubmit!=undefined && resubmit)
+            sub.status="resubmit";
+            else
             sub.status = "completed";
             console.log(sub);
             Submission.updateOne({_id:submission_id},sub).then((data)=>{
