@@ -99,7 +99,10 @@ exports.addMentorFeedback = (req,res) => {
         // sub.status = "pending";
         // sub
         console.log(sub);
-        addFeedback(fields.submission_id,fields.list_id,sub)
+        var resubmit=undefined;
+        if(fields.resubmit)
+        resubmit=fields.resubmit;
+        addFeedback(fields.submission_id,fields.list_id,sub,resubmit)
           .then((data) => {
             console.log(data);
             res.send({ success: true, data: data });
