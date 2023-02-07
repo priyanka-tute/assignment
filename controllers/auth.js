@@ -14,7 +14,7 @@ exports.login = (req,res) => {
 }
 
 exports.loginMentor = (req,res) => {
-    console.log(req.body);
+    console.log(req);
     const email = req.body.email;
     const password = req.body.password;
 
