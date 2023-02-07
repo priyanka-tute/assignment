@@ -48,3 +48,4 @@ Java Basics -
 
 - Hash password and store in database, verify using hash of the password
 - Make pass compulsory in Instructor
+- Ask karanjot to set environment variables and use the backend urls 

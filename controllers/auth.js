@@ -18,7 +18,7 @@ exports.loginMentor = (req,res) => {
     const password = req.body.password;
 
     validateMentor(email,password).then((data)=>{
-        res.send({"success":"true","dashboard":data});
+        res.send({"success":"true","token":data});
     }).catch((err)=>{
         res.send({"success":"false"});
     })
