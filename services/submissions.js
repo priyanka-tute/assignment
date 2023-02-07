@@ -151,7 +151,7 @@ exports.removeLinkSubmission = (submission_id, list_id, link, linkText,index) =>
     })
 }
 
-exports.addFeedback = (submission_id,list_id, review,resubmit) => {
+exports.addFeedback = (submission_id,list_id, review,resubmit,mentor) => {
     return new Promise((resolve,reject)=>{
         Submission.findOne({_id:submission_id, "submissions._id":list_id},
         {submissions:{$elemMatch:{_id:list_id}}}).then((sub)=>{
@@ -161,6 +161,7 @@ exports.addFeedback = (submission_id,list_id, review,resubmit) => {
             // sub.submissions[0].filecloudlinks.splice(index,1);
             sub.submissions[0].review = review;
             sub.submissions[0].reviewDate = new Date();
+            sub.submissions[0].reviewBy=mentor;
             if(resubmit!=undefined && resubmit)
             sub.status="resubmit";
             else

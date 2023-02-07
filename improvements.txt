@@ -47,3 +47,4 @@ Java Basics -
 07/02
 
 - Hash password and store in database, verify using hash of the password
+- Make pass compulsory in Instructor

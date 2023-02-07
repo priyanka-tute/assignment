@@ -102,7 +102,11 @@ exports.addMentorFeedback = (req,res) => {
         var resubmit=undefined;
         if(fields.resubmit)
         resubmit=fields.resubmit;
-        addFeedback(fields.submission_id,fields.list_id,sub,resubmit)
+
+        var mentor = undefined;
+        if(fields.mentor)
+        mentor = fields.mentor;
+        addFeedback(fields.submission_id,fields.list_id,sub,resubmit,mentor)
           .then((data) => {
             console.log(data);
             res.send({ success: true, data: data });
