@@ -1,3 +1,4 @@
+const { loginMentor } = require("../controllers/auth");
 const { fetchAllSubmissions, fetchSubmissionsByStudent, fetchSubmissionsBySubject, fetchSubmissionsByStudentSubject, addMentorFeedback, addAssignment, getPendingSubmissions } = require("../controllers/mentor");
 
 const router = require("express").Router();
@@ -15,5 +16,7 @@ router.post("/submission/feedback",addMentorFeedback);
 router.post("/assignment",addAssignment);
 
 router.get("/submission/pending",getPendingSubmissions);
+
+router.post("/login",loginMentor);
 
 module.exports = router;

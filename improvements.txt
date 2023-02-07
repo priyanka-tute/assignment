@@ -42,3 +42,8 @@ Java Basics -
 
 
 - Store questions directly 
+
+----------------------------
+07/02
+
+- Hash password and store in database, verify using hash of the password
