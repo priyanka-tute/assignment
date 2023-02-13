@@ -1,5 +1,6 @@
 // const mongoose = require("mongoose")
 
+const { ObjectId } = require("mongodb");
 const { resolve } = require("path");
 const Submission = require("../models/Submission");
 const { searchUserFromMysql } = require("./mysql");
@@ -175,7 +176,9 @@ exports.addLinkToSubmission = (submission_id, list_id, linkData) => {
         Submission.findOne({_id:submission_id, "submissions._id":list_id})
         .then((sub)=>{
             console.log("before committing....",sub,"\n",sub.submissions);
-            console.log("list=",sub.submissions.find({_id:list_id}));
+            console.log("list=",sub.submissions.find((ele)=>{
+                return ele._id==new ObjectId(list_id);
+            }));
             sub.submissions.id(list_id).link.push.apply(sub.submissions[0].link, linkData.link);
             sub.submissions.id(list_id).linkText.push.apply(sub.submissions[0].linkText, linkData.linkText);
             // console.log(sub);
