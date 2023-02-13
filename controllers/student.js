@@ -76,7 +76,7 @@ exports.viewAssignments = async (req, res) => {
   const allAssignments = await fetchAssignmentsBySubject(subject_id)
   // .then((allAssignments)=>{
     let assignments = new Array(allAssignments.length);
-    console.log("allAssignments",allAssignments);
+    // console.log("allAssignments",allAssignments);
     for(let i=0;i<allAssignments.length;i++)
     {
       assignments[i] = {};
@@ -94,10 +94,10 @@ exports.viewAssignments = async (req, res) => {
         assignments[i].questions[j].points = allAssignments[i].questions[j].points;
         if(allAssignments[i].questions[j].instructions)
         assignments[i].questions[j].instructions = allAssignments[i].questions[j].instructions;
-        console.log("assignment",assignments[i]);
+        // console.log("assignment",assignments[i]);
       const submission = await getSubmissionsByAssignmentStudentQuestion(student_id,subject_id,allAssignments[i],question_no,question)
       // .then((submission)=>{
-        console.log("submission",submission);
+        // console.log("submission",submission);
         if(submission.length>0)
         {
           if(submission[0].status)
@@ -106,7 +106,7 @@ exports.viewAssignments = async (req, res) => {
           assignments[i].questions[j].status="submitted";
           assignments[i].questions[j].submissions = submission[0].submissions;
           assignments[i].questions[j].submission_id = submission[0]._id;
-          console.log("assignment after submission update",assignments[i]);
+          // console.log("assignment after submission update",assignments[i]);
         }
         else
         {
