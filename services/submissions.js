@@ -178,13 +178,13 @@ exports.addLinkToSubmission = (submission_id, list_id, linkData) => {
             sub.submissions[0].link.push.apply(sub.submissions[0].link, linkData.link);
             sub.submissions[0].linkText.push.apply(sub.submissions[0].linkText, linkData.linkText);
             // console.log(sub);
-            sub.save();
-            // Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.filename":sub.submissions[0].filename}}).then((data)=>{
-            //     resolve(data);
-            // }).catch((err)=>{
-            //     console.log("update err",err);
-            //     reject(err);
-            // })
+            // sub.save();
+            Submission.updateOne({_id:submission_id,"submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}},{submissions:sub.submissions[0]},{new:true}).then((data)=>{
+                resolve(data);
+            }).catch((err)=>{
+                console.log("update err",err);
+                reject(err);
+            })
             resolve(sub);
         }).catch((err)=>{
             console.log("find err",err);
