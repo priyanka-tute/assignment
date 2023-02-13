@@ -1,7 +1,6 @@
 // const mongoose = require("mongoose")
 
 const { ObjectId } = require("mongodb");
-const { resolve } = require("path");
 const Submission = require("../models/Submission");
 const { searchUserFromMysql } = require("./mysql");
 
@@ -173,14 +172,11 @@ exports.addLinkToSubmission = (submission_id, list_id, linkData) => {
         //     $match:{_id:submission_id},
         //     $filter:{"submissions._id":list_id},   
         // }])
-        Submission.findOne({_id:submission_id, "submissions._id":list_id})
+        Submission.findOne({_id:submission_id},{ "submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}})
         .then((sub)=>{
             console.log("before committing....",sub,"\n",sub.submissions);
-            console.log("list=",sub.submissions.find((ele)=>{
-                return ele._id==new ObjectId(list_id);
-            }));
-            sub.submissions.id(list_id).link.push.apply(sub.submissions[0].link, linkData.link);
-            sub.submissions.id(list_id).linkText.push.apply(sub.submissions[0].linkText, linkData.linkText);
+            sub.submissions[0].link.push.apply(sub.submissions[0].link, linkData.link);
+            sub.submissions[0].linkText.push.apply(sub.submissions[0].linkText, linkData.linkText);
             // console.log(sub);
             sub.save();
             // Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.filename":sub.submissions[0].filename}}).then((data)=>{
