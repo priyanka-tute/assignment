@@ -141,7 +141,7 @@ exports.addFileToSubmission = (submission_id, list_id, fileData) => {
         //     $match:{_id:submission_id},
         //     $filter:{"submissions._id":list_id},   
         // }])
-        Submission.findOne({_id:submission_id, "submissions._id":list_id,"submissions.filelink":{"$in":filelink}})
+        Submission.findOne({_id:submission_id, "submissions._id":list_id})
         .then((sub)=>{
             console.log("before committing....",sub,"\n",sub.submissions);
             sub.submissions[0].filelink.push.apply(sub.submissions[0].filelink, fileData.filelinks);
@@ -170,7 +170,7 @@ exports.addLinkToSubmission = (submission_id, list_id, linkData) => {
         //     $match:{_id:submission_id},
         //     $filter:{"submissions._id":list_id},   
         // }])
-        Submission.findOne({_id:submission_id, "submissions._id":list_id,"submissions.filelink":{"$in":filelink}})
+        Submission.findOne({_id:submission_id, "submissions._id":list_id})
         .then((sub)=>{
             console.log("before committing....",sub,"\n",sub.submissions);
             sub.submissions[0].link.push.apply(sub.submissions[0].link, linkData.link);
