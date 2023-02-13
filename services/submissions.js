@@ -248,6 +248,7 @@ exports.resetTextSubmission = (submission_id, list_id, text) => {
             }
             console.log(sub);
             sub.save();
+            resolve(sub);
         }).catch((err)=>{
             reject(err);
         })
