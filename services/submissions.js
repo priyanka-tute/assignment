@@ -175,10 +175,10 @@ exports.addLinkToSubmission = (submission_id, list_id, linkData) => {
         Submission.findOne({_id:submission_id, "submissions._id":list_id})
         .then((sub)=>{
             console.log("before committing....",sub,"\n",sub.submissions);
-            // sub.submissions.id(list_id)
+            console.log("list=",sub.submissions.id(list_id));
             sub.submissions.id(list_id).link.push.apply(sub.submissions[0].link, linkData.link);
             sub.submissions.id(list_id).linkText.push.apply(sub.submissions[0].linkText, linkData.linkText);
-            console.log(sub);
+            // console.log(sub);
             sub.save();
             // Submission.updateOne({_id:submission_id, "submissions._id":list_id},{$set:{"submissions.filelink":sub.submissions[0].filelink, "submissions.filecloudlinks":sub.submissions[0].filecloudlinks, "submissions.filename":sub.submissions[0].filename}}).then((data)=>{
             //     resolve(data);
