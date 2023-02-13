@@ -174,7 +174,7 @@ exports.addLinkToSubmission = (submission_id, list_id, linkData) => {
         // }])
         Submission.findOne({_id:submission_id},{ "submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}})
         .then((sub)=>{
-            console.log("before committing....",sub,"\n",sub.submissions);
+            console.log("before committing....",sub.submissions[0]._id);
             sub.submissions[0].link.push.apply(sub.submissions[0].link, linkData.link);
             sub.submissions[0].linkText.push.apply(sub.submissions[0].linkText, linkData.linkText);
             // console.log(sub);
