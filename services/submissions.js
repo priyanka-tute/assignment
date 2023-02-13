@@ -24,10 +24,10 @@ exports.addSubmission = (assignment_id,subject_id, student_id, question, submiss
 exports.addAttempt = (submission_id, submission) => {
     return new Promise((resolve,reject)=>{
     Submission.findByIdAndUpdate(submission_id,{$push:{submissions:submission},"status":"submitted"},{new:true}).then((data)=>{
-        console.log("updated...",data);
+        console.log("updated...");
         resolve(data);
     }).catch((err)=>{
-        console.log("err...",err);
+        console.log("err...");
         reject(err);
     })
 })

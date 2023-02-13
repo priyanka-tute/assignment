@@ -139,8 +139,8 @@ exports.resubmit = (req,res) => {
   let form = new formidable.IncomingForm();
   form.parse(req, async function (error, fields, file) {
     // console.log("file = ", Object.keys(file.fileupload));
-    console.log("fields = ", fields);
-    console.log("file = ", file);
+    // console.log("fields = ", fields);
+    // console.log("file = ", file);
     // console.log(fields.question);
     // console.log("error = ", error);
     let links = [];
@@ -178,7 +178,7 @@ exports.resubmit = (req,res) => {
         console.log(sub);
         addAttempt(fields.submission_id,sub)
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             res.send({ success: true, data: data });
           })
           .catch((err) => {
