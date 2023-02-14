@@ -233,7 +233,7 @@ exports.addFeedback = (submission_id,list_id, review,resubmit,mentor) => {
             sub.submissions[0].review = review;
             sub.submissions[0].reviewDate = new Date();
             sub.submissions[0].reviewBy=mentor;
-            if(resubmit!=undefined && resubmit)
+            if(resubmit!=undefined && (resubmit=="true" || resubmit==true))
             sub.status="resubmit";
             else
             sub.status = "completed";
