@@ -3,7 +3,7 @@ const {Assignment} = require("../models/Assignment");
 exports.fetchAssignmentsBySubject = (subject_id) => {
     return new Promise((resolve,reject)=>{
         Assignment.find({subject_id:subject_id}).then((data)=>{
-            console.log(data);
+            // console.log(data);
             resolve(data);
         }).catch((err)=>{
             console.log(err);
