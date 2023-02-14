@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose").set('debug',false);
 const uri = `mongodb+srv://tutedude:${process.env.MONGO_PASSWORD}@cluster0.osgcx.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.connect(uri);

@@ -157,7 +157,7 @@ exports.addFileToSubmission = (submission_id, list_id, fileData) => {
                 console.log("update err",err);
                 reject(err);
             })
-            resolve(sub);
+            // resolve(sub);
         }).catch((err)=>{
             console.log("find err",err);
             reject(err);
