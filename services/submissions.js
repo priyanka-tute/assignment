@@ -149,7 +149,7 @@ exports.addFileToSubmission = (submission_id, list_id, fileData) => {
             sub.submissions[0].filelink.push.apply(sub.submissions[0].filelink, fileData.filelinks);
             sub.submissions[0].filename.push.apply(sub.submissions[0].filename, fileData.filename);
             sub.submissions[0].filecloudlinks.push.apply(sub.submissions[0].filecloudlinks, fileData.filecloudlinks);
-            console.log(sub);
+            // console.log(sub);
             // sub.save();
             Submission.updateOne({"submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}},{"submissions.$":sub.submissions[0]},{new:true}).then((data)=>{
                 resolve(data);
