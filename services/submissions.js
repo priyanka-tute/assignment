@@ -151,7 +151,9 @@ exports.addFileToSubmission = (submission_id, list_id, fileData) => {
             sub.submissions[0].filecloudlinks.push.apply(sub.submissions[0].filecloudlinks, fileData.filecloudlinks);
             // console.log(sub);
             // sub.save();
-            Submission.updateOne({"submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}},{"submissions.$":sub.submissions[0]},{new:true}).then((data)=>{
+            Submission.updateOne({"submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}},{"submissions.$.filelink":sub.submissions[0].filelink,
+                                                                                            "submissions.$.filename":sub.submissions[0].filename,
+                                                                                            "submissions.$.filecloudlinks":sub.submissions[0].filecloudlinks},{new:true}).then((data)=>{
                 resolve(data);
             }).catch((err)=>{
                 console.log("update err",err);
@@ -179,7 +181,7 @@ exports.addLinkToSubmission = (submission_id, list_id, linkData) => {
             sub.submissions[0].linkText.push.apply(sub.submissions[0].linkText, linkData.linkText);
             // console.log(sub);
             // sub.save();
-            Submission.updateOne({_id:submission_id,"submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}},{"submissions.$":sub.submissions[0]},{new:true}).then((data)=>{
+            Submission.updateOne({_id:submission_id,"submissions":{"$elemMatch":{"_id":ObjectId(list_id)}}},{"submissions.$.link":sub.submissions[0].link,"submissions.$.linkText":sub.submissions[0].linkText},{new:true}).then((data)=>{
                 resolve(data);
             }).catch((err)=>{
                 console.log("update err",err);
