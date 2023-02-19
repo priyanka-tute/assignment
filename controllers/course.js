@@ -18,7 +18,7 @@ exports.fetchAllCourses = (req,res) => {
 }
 
 exports.fetchCourse = (req,res) => {
-    const course_id = req.body.course_id;
+    const course_id = req.query.course_id;
     console.log(course_id);
     getCourse(course_id).then((data)=>{
         res.send({success:true,data:data});
