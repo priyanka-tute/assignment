@@ -42,7 +42,7 @@ exports.updateAssignment = (subject_id,assignment_id,questions) => {
     })
 }
 
-exports.addAssignment = (subject_id,questions,addedBy,topic) => {
+exports.addAssignment = (subject_id,questions,topic, addedBy) => {
     return new Promise((resolve,reject)=>{
         var a = new Assignment({
             subject_id:subject_id,

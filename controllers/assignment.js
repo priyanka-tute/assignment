@@ -7,8 +7,8 @@ const {
 } = require("../services/Assignment");
 
 exports.putAssignment = (req, res) => {
-  console.log(req.body);
-  addAssignment(req.body.subject_id, req.body["questions"])
+  console.log(req.body); 
+  addAssignment(req.body.subject_id, req.body["questions"], req.body["topic"], req.body["mentor"])
     .then((result) => {
       res.send({ success: true, data: result });
     })
