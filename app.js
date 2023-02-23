@@ -62,6 +62,7 @@ app.get("/", (req, res) => {
 app.use("/assignment",require("./routes/assignment"));
 app.use("/assignment",require("./routes/submission"));
 app.use("/assignment/mentor",require("./routes/mentor"));
+app.use("/assignment",require("./routes/course"));
 app.post("/assignment/submit", submitAssignment);
 app.get("/assignment/subjects", (req, res) => {
   res.send({
