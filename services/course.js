@@ -1,9 +1,12 @@
-const {Course} = require("../models/Course");
+const Course = require("../models/Course");
 
 exports.getAllCourses = () => {
-    return new Promise((resolve, reject)=>{
+    return new Promise(async (resolve, reject)=>{
         console.log("in getAllCourses..");
-        Course.find({}).exec().then((data)=>{
+        // const c = await 
+        Course.find({}).exec()
+        // resolve(c);
+        .then((data)=>{
             console.log("getAllCourses data...",data);
             resolve(data);
         }).catch((err)=>{
