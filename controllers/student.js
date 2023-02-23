@@ -88,12 +88,13 @@ exports.viewAssignments = async (req, res) => {
         const question = allAssignments[i].questions[j].question;
         const question_no = allAssignments[i].questions[j].question_no;
         assignments[i].questions[j] = {};
-        assignments[i].questions[j].question = question;
-        assignments[i].questions[j].question_no = question_no;
-        if(allAssignments[i].questions[j].points)
-        assignments[i].questions[j].points = allAssignments[i].questions[j].points;
-        if(allAssignments[i].questions[j].instructions)
-        assignments[i].questions[j].instructions = allAssignments[i].questions[j].instructions;
+        assignments[i].questions[j] = {...question};
+        // assignments[i].questions[j].question = {};
+        // assignments[i].questions[j].question_no = question_no;
+        // if(allAssignments[i].questions[j].points)
+        // assignments[i].questions[j].points = allAssignments[i].questions[j].points;
+        // if(allAssignments[i].questions[j].instructions)
+        // assignments[i].questions[j].instructions = allAssignments[i].questions[j].instructions;
         // console.log("assignment",assignments[i]);
       const submission = await getSubmissionsByAssignmentStudentQuestion(student_id,subject_id,allAssignments[i],question_no,question)
       // .then((submission)=>{
