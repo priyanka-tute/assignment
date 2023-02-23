@@ -32,4 +32,5 @@ const AssignmentSchema = new Schema({
   });
 
 const Assignment = mongoose.model('assignment',AssignmentSchema);
+
 module.exports = {Assignment,QuestionSchema};
