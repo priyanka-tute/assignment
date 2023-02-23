@@ -9,11 +9,11 @@ const QuestionSchema = new Schema({
   question:String,
   instructions:String,
   addedBy:{type:ObjectId, ref:"instructor"},
-  filelink: [String],
-  filename: [String],
-  filecloudlinks:[String],
-  link: [String],
-  linkText:[String],
+  filelink: [],
+  filename: [],
+  filecloudlinks:[],
+  link: [],
+  linkText:[],
 },{timestamps:{
   createdAt: 'addDate',
   updatedAt: 'updatedAt'
@@ -21,7 +21,7 @@ const QuestionSchema = new Schema({
 
 const AssignmentSchema = new Schema({
  subject_id:{type:ObjectId,ref:"course"},
- questions:[QuestionSchema],
+ questions_list:[QuestionSchema],
  topic:{default:"Topic",type:String},
  addedBy:{type:ObjectId, ref:"instructor"},
 },{
