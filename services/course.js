@@ -3,7 +3,7 @@ const {Course} = require("../models/Course");
 exports.getAllCourses = () => {
     return new Promise((resolve, reject)=>{
         console.log("in getAllCourses..");
-        Course.find({}).then((data)=>{
+        Course.find({}).exec().then((data)=>{
             console.log("getAllCourses data...",data);
             resolve(data);
         }).catch((err)=>{
