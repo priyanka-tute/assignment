@@ -9,11 +9,11 @@ const QuestionSchema = new Schema({
   question:String,
   instructions:String,
   addedBy:{type:ObjectId, ref:"instructor"},
-  filelink: [],
-  filename: [],
-  filecloudlinks:[],
-  link: [],
-  linkText:[],
+  filelink: [String],
+  filename: [String],
+  filecloudlinks:[String],
+  link: [String],
+  linkText:[String],
 },{timestamps:{
   createdAt: 'addDate',
   updatedAt: 'updatedAt'
