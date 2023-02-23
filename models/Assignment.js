@@ -21,7 +21,7 @@ const QuestionSchema = new Schema({
 
 const AssignmentSchema = new Schema({
  subject_id:{type:ObjectId,ref:"course"},
- questions_list:[QuestionSchema],
+ questions:[QuestionSchema],
  topic:{default:"Topic",type:String},
  addedBy:{type:ObjectId, ref:"instructor"},
 },{
