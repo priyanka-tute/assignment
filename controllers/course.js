@@ -10,6 +10,7 @@ exports.addNewCourse = (req,res) => {
 }
 
 exports.fetchAllCourses = (req,res) => {
+    console.log("fetchAllCourse...");
     getAllCourses().then((data)=>{
         res.send({success:true,data:data});
     }).catch((err)=>{
