@@ -83,12 +83,12 @@ exports.viewAssignments = async (req, res) => {
       assignments[i].assignment_id=allAssignments[i]._id;
       assignments[i].subject_id=allAssignments[i].subject_id;
       assignments[i].questions = new Array(allAssignments[i].questions.length);
-      assignments[i].questions = allAssignments[i].questions;
-
+      
       for(let j=0;j<allAssignments[i].questions.length;j++)
       {
         const question = allAssignments[i].questions[j].question;
         const question_no = allAssignments[i].questions[j].question_no;
+        assignments[i].questions[j] = {...allAssignments[i].questions[j]};
         // assignments[i].questions[j] = {};
         // assignments[i].questions[j] = allAssignments[i].questions[j];
         // assignments[i].questions[j].question = {};
