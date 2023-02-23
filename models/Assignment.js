@@ -13,7 +13,7 @@ const QuestionSchema = new Schema({
   filename: [],
   filecloudlinks:[],
   link: [],
-  linkText:[]
+  linkText:[],
 },{timestamps:{
   createdAt: 'addDate',
   updatedAt: 'updatedAt'
