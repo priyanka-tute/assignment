@@ -5,6 +5,7 @@ exports.getAllCourses = () => {
         Course.find({}).then((data)=>{
             resolve(data);
         }).catch((err)=>{
+            console.log("err..",err);
             reject(err);
         })
     })
