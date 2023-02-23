@@ -88,7 +88,7 @@ exports.viewAssignments = async (req, res) => {
       {
         const question = allAssignments[i].questions[j].question;
         const question_no = allAssignments[i].questions[j].question_no;
-        assignments[i].questions[j] = {...allAssignments[i].questions[j]};
+        assignments[i].questions[j] = {...allAssignments[i].questions[j].toObject()};
         // assignments[i].questions[j] = {};
         // assignments[i].questions[j] = allAssignments[i].questions[j];
         // assignments[i].questions[j].question = {};
