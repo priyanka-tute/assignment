@@ -9,4 +9,4 @@ connection.once("open", function() {
     console.log("MongoDB mongoose database connection established successfully");
 });
 
-mongoose.set('debug', true);
+mongoose.set('debug', false);
