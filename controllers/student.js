@@ -80,6 +80,7 @@ exports.viewAssignments = async (req, res) => {
     for(let i=0;i<allAssignments.length;i++)
     {
       assignments[i] = {};
+      assignments[i] = {...allAssignments[i]};
       assignments[i].assignment_id=allAssignments[i]._id;
       assignments[i].subject_id=allAssignments[i].subject_id;
       assignments[i].questions = new Array(allAssignments[i].questions.length);
