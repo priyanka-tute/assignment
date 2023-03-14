@@ -36,10 +36,9 @@ const {
 
 var app = express();
 app.use(cors());
-app.all('/*', function(req, res, next) {
-  console.log("applied headers");
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "upskill.tutedude.com"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 require("./services/mongoose");
