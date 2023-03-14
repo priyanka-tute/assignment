@@ -37,6 +37,7 @@ const {
 var app = express();
 app.use(cors());
 app.all('/*', function(req, res, next) {
+  console.log("applied headers");
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
